@@ -1,0 +1,19 @@
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+handle = open(name)
+counts = dict()
+for line in handle:
+    if len(line)<6:
+        continue
+   
+    words= line.split()
+    if words[0] == 'From':
+        a = words[5]
+        b = a[0:2]
+        if b in counts:
+            counts[b]+=1
+        else:
+            counts[b] = 1         
+for k, v in sorted(counts.items()):
+    print(k, v)
